@@ -10,6 +10,8 @@ export interface TerminalLineProps {
   speed?: number;
   /** Blinking block cursor after the text is complete. Default false. */
   showCursor?: boolean;
+  /** CSS font-family. Default: var(--font-geist-mono). */
+  fontFamily?: string;
   className?: string;
   /** Fired once when the full text has been revealed. */
   onComplete?: () => void;
@@ -22,6 +24,7 @@ export default function TerminalLine({
   delay = 0,
   speed = 40,
   showCursor = false,
+  fontFamily = "var(--font-geist-mono)",
   className,
   onComplete,
 }: TerminalLineProps) {
@@ -111,7 +114,7 @@ export default function TerminalLine({
       className={["text-[var(--text-primary)]", className]
         .filter(Boolean)
         .join(" ")}
-      style={{ fontFamily: "var(--font-geist-mono)" }}
+      style={{ fontFamily }}
     >
       <style>{CURSOR_KEYFRAMES}</style>
       <span aria-live="polite" aria-atomic="true">
