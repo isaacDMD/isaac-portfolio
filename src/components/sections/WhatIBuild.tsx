@@ -82,7 +82,10 @@ function CapabilityCard({
       </p>
 
       {stacks.length > 0 ? (
-        <ul className="flex flex-wrap gap-[var(--space-2)]" aria-label="Stack">
+        <ul
+          className="mt-[var(--space-2)] flex flex-wrap gap-[var(--space-1)]"
+          aria-label="Stack"
+        >
           {visibleStacks.map((tech) => (
             <li key={tech}>
               <Badge label={tech} variant="default" />

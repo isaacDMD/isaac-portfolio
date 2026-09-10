@@ -79,7 +79,7 @@ export default function Hero() {
     <section
       id="hero"
       aria-label="Introduction"
-      className="relative flex min-h-screen items-center overflow-hidden px-[var(--space-4)] md:px-[var(--space-8)]"
+      className="relative flex min-h-[calc(100vh-64px)] items-center overflow-hidden px-[var(--space-4)] md:px-[var(--space-8)]"
     >
       <div
         id="hero-canvas-placeholder"
@@ -209,7 +209,7 @@ export default function Hero() {
           >
             <h1
               className="display-xl text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.05] tracking-[-0.02em] font-bold text-[var(--text-primary)]"
-              style={{ fontFamily: "var(--font-geist)", fontWeight: 700 }}
+              style={{ fontFamily: "var(--font-geist-sans)", fontWeight: 700 }}
             >
               {reduce || !showIdentity ? (
                 "Isaac Djimadjo"
@@ -220,7 +220,7 @@ export default function Hero() {
                     <TerminalLine
                       text="ISAAC DJIMADJO"
                       speed={60}
-                      fontFamily="var(--font-geist)"
+                      fontFamily="var(--font-geist-sans)"
                       className="!text-[var(--text-primary)] text-[clamp(2.5rem,6vw,4.5rem)] leading-[1.05] tracking-[-0.02em] font-bold"
                       onComplete={() => goTo(4)}
                     />

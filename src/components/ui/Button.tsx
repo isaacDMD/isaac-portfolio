@@ -56,7 +56,7 @@ export default function Button({
 
   const style: CSSProperties = {
     borderRadius: "var(--radius-sm)",
-    fontFamily: "var(--font-geist)",
+    fontFamily: "var(--font-geist-sans)",
     transition: `all var(--dur-normal) var(--ease-out)`,
     ...SIZE_STYLES[size],
   };

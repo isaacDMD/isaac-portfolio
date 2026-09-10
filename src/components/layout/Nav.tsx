@@ -16,7 +16,7 @@ const NAV_LINKS = [
 const SECTION_IDS = ["hero", ...NAV_LINKS.map((link) => link.id)] as const;
 
 const LINK_CLASS =
-  "text-sm text-[var(--text-secondary)] transition-[color] duration-[var(--dur-fast)] ease-[var(--ease-out)] hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-[var(--accent)] focus-visible:outline-offset-2";
+  "px-[var(--space-2)] text-sm text-[var(--text-secondary)] transition-[color] duration-[var(--dur-fast)] ease-[var(--ease-out)] hover:text-[var(--text-primary)] focus-visible:outline-2 focus-visible:outline-[var(--accent)] focus-visible:outline-offset-2";
 
 function linkClassName(isActive: boolean): string {
   return [LINK_CLASS, isActive ? "text-[var(--accent)]" : null]
@@ -173,8 +173,8 @@ export default function Nav() {
             ID
           </a>
 
-          <div className="hidden items-center md:flex">
-            <ul className="flex items-center gap-[var(--space-6)] border-r border-[var(--border-subtle)] pr-[var(--space-6)]">
+          <div className="hidden items-center gap-[var(--space-6)] md:flex">
+            <ul className="flex items-center gap-[var(--space-6)]">
               {NAV_LINKS.map((link) => (
                 <li key={link.id}>
                   <a
@@ -187,9 +187,11 @@ export default function Nav() {
                 </li>
               ))}
             </ul>
-            <div className="pl-[var(--space-6)]">
-              <StatusDot status="online" label="ONLINE" />
-            </div>
+            <span
+              aria-hidden="true"
+              className="h-4 w-px bg-[var(--border-subtle)]"
+            />
+            <StatusDot status="online" label="ONLINE" />
           </div>
 
           <button

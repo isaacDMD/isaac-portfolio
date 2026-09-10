@@ -39,7 +39,7 @@ export const projects: Project[] = [
     tagline: "Control your cursor with hand gestures",
     description:
       "Computer vision system that tracks hand landmarks and translates finger movements into cursor control — built with Python, OpenCV and Google MediaPipe HandLandmarker.",
-    category: "experimental-interfaces",
+    category: "interactive-experiences",
     featured: true,
     input: "Hand movement",
     processing: "OpenCV + MediaPipe HandLandmarker",
@@ -53,7 +53,7 @@ export const projects: Project[] = [
     tagline: "Play music with your fingers",
     description:
       "Synthesizer that maps raised fingers to musical notes using hand landmark detection. Each finger triggers a different note in real time.",
-    category: "experimental-interfaces",
+    category: "interactive-experiences",
     featured: true,
     input: "Finger gesture",
     processing: "Hand landmark detection",

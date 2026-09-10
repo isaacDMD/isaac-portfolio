@@ -142,14 +142,15 @@ export default function About() {
           whileInView={{ opacity: 1, x: 0 }}
           viewport={{ once: true, margin: "-60px" }}
           transition={columnTransition(0.15)}
-          className="flex flex-col gap-[var(--space-8)]"
+          className="flex flex-col gap-[var(--space-6)]"
           aria-label="Profile details"
         >
-          {/* TODO: remplacer par <Image> Next.js */}
+          {/* Avatar placeholder — premier élément */}
           <div
+            className="h-[120px] w-[120px] rounded-full border-2 border-[var(--border-default)] bg-[var(--surface-raised)]"
             aria-hidden="true"
-            className="size-[120px] shrink-0 rounded-full border-2 border-solid border-[var(--border-default)] bg-[var(--surface-raised)]"
           />
+          {/* TODO: remplacer par <Image> Next.js */}
 
           <InfoBlock label="BASED IN">
             <p className="text-base text-[var(--text-primary)]">Lomé, Togo</p>
