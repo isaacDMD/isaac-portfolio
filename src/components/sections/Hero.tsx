@@ -10,7 +10,7 @@ import { useCallback, useEffect, useState } from "react";
 import Button from "@/components/ui/Button";
 import StatusDot from "@/components/ui/StatusDot";
 import TerminalLine from "@/components/ui/TerminalLine";
-import useMousePosition from "@/hooks/useMousePosition";
+import { useMousePosition } from "@/hooks/useMousePosition";
 
 const TERMINAL_CLASS = "font-mono text-xs !text-[var(--text-muted)]";
 

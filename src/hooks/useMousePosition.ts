@@ -1,36 +1,64 @@
 "use client";
 
-import { useEffect, useState } from "react";
+import { useReducedMotion } from "framer-motion";
+import { useEffect, useRef, useState } from "react";
 
 export interface MousePosition {
-  /** Normalized horizontal position in [-1, 1]. */
   x: number;
-  /** Normalized vertical position in [-1, 1]. */
   y: number;
 }
 
 /**
- * Tracks the pointer position normalized to the viewport.
- * Center = (0, 0), edges ≈ ±1.
+ * Normalized pointer position relative to the viewport.
+ * Uses rAF so React state updates at most once per frame.
+ * When reduced motion is preferred, always returns { x: 0, y: 0 }.
  */
-export default function useMousePosition(): MousePosition {
+export function useMousePosition(): MousePosition {
+  const prefersReducedMotion = useReducedMotion();
   const [position, setPosition] = useState<MousePosition>({ x: 0, y: 0 });
 
+  const frameRef = useRef<number | null>(null);
+  const latestRef = useRef<MousePosition>({ x: 0, y: 0 });
+
   useEffect(() => {
+    if (prefersReducedMotion) {
+      setPosition({ x: 0, y: 0 });
+      return;
+    }
+
+    const flush = () => {
+      frameRef.current = null;
+      setPosition(latestRef.current);
+    };
+
     const onMove = (event: MouseEvent) => {
       const width = window.innerWidth || 1;
       const height = window.innerHeight || 1;
-      const x = (event.clientX / width) * 2 - 1;
-      const y = (event.clientY / height) * 2 - 1;
-      setPosition({
-        x: Math.max(-1, Math.min(1, x)),
-        y: Math.max(-1, Math.min(1, y)),
-      });
+
+      latestRef.current = {
+        x: Math.max(-1, Math.min(1, (event.clientX / width) * 2 - 1)),
+        y: Math.max(-1, Math.min(1, (event.clientY / height) * 2 - 1)),
+      };
+
+      if (frameRef.current === null) {
+        frameRef.current = window.requestAnimationFrame(flush);
+      }
     };
 
     window.addEventListener("mousemove", onMove, { passive: true });
-    return () => window.removeEventListener("mousemove", onMove);
-  }, []);
+
+    return () => {
+      window.removeEventListener("mousemove", onMove);
+      if (frameRef.current !== null) {
+        window.cancelAnimationFrame(frameRef.current);
+        frameRef.current = null;
+      }
+    };
+  }, [prefersReducedMotion]);
+
+  if (prefersReducedMotion) {
+    return { x: 0, y: 0 };
+  }
 
   return position;
 }
